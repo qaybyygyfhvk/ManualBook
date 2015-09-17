@@ -50,7 +50,10 @@
 	```
 	export REDIS_HOME=/usr/local/redis-3.0.4
 	export PATH=$REDIS_HOME/src:$PATH
-	```  
+	```
+7. 更新环境变量  
+	`source /etc/profile`  
+  
 7. 启动 Redis  
 	`redis-server`  
 	> 启动日志如果出现如下警告
@@ -73,3 +76,6 @@
 	```  
 	> 则执行如下命令
 	`echo never > /sys/kernel/mm/transparent_hugepage/enabled`
+
+8. 利用 redis-cli 就可以使用redis了，马上试试吧
+	`redis-cli`
