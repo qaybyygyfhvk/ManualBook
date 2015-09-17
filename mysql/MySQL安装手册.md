@@ -59,7 +59,7 @@
 	`ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql`
 
 20. 登录 mysql 配置下允许root用户远程登录  
-	`mysql -u root -p`
+	`mysql -u root -p`  
     `mysql > GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY 'root'  WITH GRANT OPTION;`
 
 21. 设置 mysql 开机启动  
