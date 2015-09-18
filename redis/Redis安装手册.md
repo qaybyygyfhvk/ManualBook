@@ -6,6 +6,9 @@
 2. 复制 Redis 安装包至目录 /usr/local/ 下  
 	`cp redis-3.0.4.tar.gz /usr/local/`
 
+3. 进入 /usr/local/ 目录下  
+	`cd /usr/local` 
+
 3. 解压 Redis 安装包  
 	`tar zxvf redis-3.0.4.tar.gz`
 

@@ -106,4 +106,4 @@ scp -r redis-cluster root@192.168.1.102:/usr/local/
 
 三、创建 Redis 集群
 1. 执行如下命令
-`redis-trib.rb create --replicas 1 Server1:7000 Server1:70001 Server2:7000 Server2:7001 Server3:7000 Server3:7001`
+`redis-trib.rb create --replicas 1 192.168.1.100:7000 192.168.1.100:70001 192.168.1.101:7000 192.168.1.101:7001 192.168.1.102:7000 192.168.1.102:7001`
