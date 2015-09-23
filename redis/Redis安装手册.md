@@ -1,21 +1,15 @@
 ## Redis 安装手册
 
-1. 获取 Redis 安装包  
+1. ### 获取 Redis 安装包  
 	`wget http://download.redis.io/releases/redis-3.0.4.tar.gz`
 
-2. 复制 Redis 安装包至目录 /usr/local/ 下  
-	`cp redis-3.0.4.tar.gz /usr/local/`
+2. ### 解压 Redis 安装包   
+	`tar redis-3.0.4.tar.gz -C /usr/local/`
 
-3. 进入 /usr/local/ 目录下  
-	`cd /usr/local` 
+3. ### 进入解压目录
+	`cd /usr/local/redis-3.0.4` 
 
-3. 解压 Redis 安装包  
-	`tar zxvf redis-3.0.4.tar.gz`
-
-4. 进入 Redis 目录  
-	`cd redis-3.0.4`
-
-5. 编译  
+4. ### 编译  
 	`make`  
 
 	> 如果报如下错误, 则安装gcc, `apt-get install gcc`
@@ -47,17 +41,17 @@
 	make: *** [all] Error 2
 	```  
 
-6. 配置环境变更  
+5. ### 配置环境变更  
 	`vim /etc/profile`  
 	> 添加如下内容 
 	```
 	export REDIS_HOME=/usr/local/redis-3.0.4
 	export PATH=$REDIS_HOME/src:$PATH
 	```
-7. 更新环境变量  
+6. ### 更新环境变量  
 	`source /etc/profile`  
   
-7. 启动 Redis  
+7. ### 启动 Redis  
 	`redis-server`  
 	> 启动日志如果出现如下警告
 	```
@@ -80,5 +74,5 @@
 	> 则执行如下命令
 	`echo never > /sys/kernel/mm/transparent_hugepage/enabled`
 
-8. 利用 redis-cli 就可以使用redis了，马上试试吧
+8. ### 测试
 	`redis-cli`

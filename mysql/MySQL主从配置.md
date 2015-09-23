@@ -1,9 +1,9 @@
 ## MySQL主从配置
 
-1. 主机操作
-	> 1) 编辑 mysql 的配置文件  
+1. ### 主机操作
+	1. ##### 编辑 mysql 的配置文件  
 	`vi /etc/my.cnf`  
-	>> 在 [mysqld] 中添加如下内容
+	> 在 [mysqld] 中添加如下内容
 	```  
 	[mysqld]   
 	## 至少要有server-id和log-bin两项  
@@ -15,24 +15,24 @@
 	## 不需要同步的数据库名，如果有多个，可重复此参数，一个数据库一行  
 	binlog-ignore-db=mysql
 	```
-	>  
-	> 2) 重启mysql数据库，并进入mysql控制台   
+	  
+	2. ##### 重启mysql数据库，并进入mysql控制台   
 	```
 	service mysql.server restart  
 	mysql -u root -p
 	```
-	>  
-	> 3) 创建一个有复制权限的用户 
+	  
+	3. ##### 创建一个有复制权限的用户 
 	```
 	mysql> create user repl_user@从机IP;  
 	mysql> grant relpication slave on *.* to repl_user@从机IP identified by '123456';  
 	```
-	> 
-	> 4) 显示Master状态,并记录下面的状态值，在从机配置时需要用到
+	 
+	4. ##### 显示Master状态,并记录下面的状态值，在从机配置时需要用到
 	```	
 	mysql>show master status;
 	``` 
-	>> 结果显示如下
+	> 结果显示如下
 	```	 
 	+------------------+----------+--------------------------+------------------+-------------------+  
 	| File             | Position | Binlog_Do_DB             | Binlog_Ignore_DB | Executed_Gtid_Set |  
@@ -41,10 +41,10 @@
 	+------------------+----------+--------------------------+------------------+-------------------+
 	```
 
-2. 从机操作
-	> 1) 编辑 mysql 配置文件
+2. ### 从机操作
+	1. ##### 编辑 mysql 配置文件
 	`vi /etc/my.cnf`
-	>> 在 [mysqld] 中添加如下内容
+	> 在 [mysqld] 中添加如下内容
 	```
 	[mysqld]  
 	server-id=2  
@@ -56,17 +56,16 @@
 	replicate-do-db=mihsfoperation  
 	replicate-ignore-db=mysql
 	```
-	>
-	> 2) 重启mysql数据库，并进入mysql控制台  
+	
+	2. ##### 重启mysql数据库，并进入mysql控制台  
 	```
 	service mysql.server restart  
 	mysql -u root -p
 	```
-	>
-	> 3) 设置Master配置  
-	>> 停止同步进程  
+	
+	3. ##### 停止同步进程  
 	`mysql>stop slave;`  
-	>> 设置Master  
+	4. ##### 设置Master  
 	```
 	mysql> change master to master_host='主机IP',  
 	->master_user='repl_user',  
@@ -74,11 +73,11 @@
 	->master_log_file='mysql-bin.000001',  
 	->master_log_pos=120;
 	```  
-	>> 开户同步进程  
+	5. ##### 开户同步进程  
 	`mysql>start slave;`  
-	>> 查看slave同步信息，出现的内容中，如果Slave_IO_Running: Yes和Slave_SQL_Running: Yes即为主从配置成功  
+	6. ##### 查看slave同步信息  
 	`mysql>SHOW SLAVE STATUS\G`
-	>> 结果显示
+	> 结果显示，出现的内容中，如果Slave_IO_Running: Yes和Slave_SQL_Running: Yes即为主从配置成功
 	```
 	*************************** 1. row ***************************
 	               Slave_IO_State: Waiting for master to send event
